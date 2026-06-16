@@ -3,6 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose');
 const productRoute = require('./routes/product.route.js');
 
+const createAdmin = require('./seedAdmin');
+
 const authRoute = require('./routes/auth.route.js');
 const app = express()
 
@@ -27,8 +29,10 @@ app.get('/', (req,res) => {
 
 mongoose.connect(process.env.MONGO_URL)
 
-  .then(() => {
+  .then(async () => {
      console.log("Connected to the database!");
+
+     await createAdmin();
   })
   .catch((err) => {
   console.log("connection failed!", err);

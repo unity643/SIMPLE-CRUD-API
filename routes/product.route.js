@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const Product = require("../models/product.model.js");
-
 const {
     getProducts,
     getProduct,
@@ -12,14 +10,15 @@ const {
 } = require('../controllers/product.controller.js');
 
 const protect = require('../middleware/auth.middleware.js');
+const authorizeRoles = require('../middleware/role.middleware.js');
 
-// PUBLIC routes
+// PUBLIC
 router.get('/', getProducts);
 router.get('/:id', getProduct);
 
-// PROTECTED routes 🔒
-router.post('/', protect, createProduct);
-router.put('/:id', protect, updateProduct);
-router.delete('/:id', protect, deleteProduct);
+// ADMIN ONLY 🔒
+router.post('/', protect, authorizeRoles("admin"), createProduct);
+router.put('/:id', protect, authorizeRoles("admin"), updateProduct);
+router.delete('/:id', protect, authorizeRoles("admin"), deleteProduct);
 
 module.exports = router;

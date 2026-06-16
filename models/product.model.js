@@ -4,6 +4,8 @@ const productschema = mongoose.Schema(
 
 
 
+
+
 {
 name: {
     type: String,
