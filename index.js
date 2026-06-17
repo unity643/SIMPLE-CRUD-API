@@ -5,6 +5,8 @@ const productRoute = require('./routes/product.route.js');
 
 const createAdmin = require('./seedAdmin');
 
+const todoRoute = require("./routes/todo.route");
+
 const authRoute = require('./routes/auth.route.js');
 const app = express()
 
@@ -16,10 +18,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 
+
+
 // routes
 
 app.use('/api/products',productRoute);
 app.use('/api/auth', authRoute);
+
+
+
+app.use("/api/todo", todoRoute);
 
 
 app.get('/', (req,res) => {

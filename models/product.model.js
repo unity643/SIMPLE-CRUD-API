@@ -23,9 +23,8 @@ price: {
     required: true,
     default: 0
 },
-image: {
-    type:String,
-    required: false
+imageUrl: {
+    type: String
 },
 
 }, 

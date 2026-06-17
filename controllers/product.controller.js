@@ -1,5 +1,7 @@
 const Product =require('../models/product.model');
 
+const cloudinary = require("../config/cloudinary");
+
 
 
 const getProducts = async (req, res) => {
@@ -7,7 +9,7 @@ const getProducts = async (req, res) => {
 
 
     try {
-        const products = Product.find({});
+        const products = await Product.find({});
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -28,21 +30,34 @@ const getProduct = async (req, res) => {
  
 const createProduct = async (req, res) => {
     try {
-
-        // ✅ PUT IT HERE
+        console.log("BODY:", req.body);
+console.log("FILE:", req.file);
+        // validate fields
         if (!req.body.name || !req.body.price) {
             return res.status(400).json({ message: "Missing fields" });
         }
 
-        const product = await Product.create(req.body);
+        let imageUrl = "";
 
-        res.status(200).json(product);
+        // check if file was uploaded
+        if (req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path);
+            imageUrl = result.secure_url;
+        }
+
+        const product = await Product.create({
+            name: req.body.name,
+            price: req.body.price,
+            quantity: req.body.quantity,
+            imageUrl: imageUrl
+        });
+
+        res.status(201).json(product);
 
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
-
 
 const updateProduct =async (req, res) => {
 try {
