@@ -1,81 +1,149 @@
-# Product CRUD API with Authentication and Authorization
+# SIMPLE CRUD API
 
-## Overview
-
-This is a backend REST API built with Node.js, Express.js, and MongoDB. The project started as a Product CRUD API and was later extended with authentication, authorization, and security features.
+A RESTful Backend API built with Node.js, Express.js, and MongoDB. This project demonstrates authentication, product management, image uploads, external API integration, and Todo management.
 
 ## Features
 
-* Product CRUD Operations
-* User Registration
-* User Login
-* Password Hashing with bcrypt
-* JWT Authentication
-* Role-Based Authorization (Admin/User)
-* Protected Routes
-* Environment Variables with dotenv
-* Automated Admin Account Creation
+* User Authentication
 
-## Technologies Used
+  * User Registration
+  * User Login
+  * JWT Authentication
+  * Protected Routes
+
+* Product Management
+
+  * Create Product
+  * Get All Products
+  * Get Single Product
+  * Update Product
+  * Delete Product
+
+* Image Upload
+
+  * Multer Integration
+  * Cloudinary Image Storage
+
+* Todo Management
+
+  * Create Todo
+  * Get Todos
+  * Update Todo
+  * Delete Todo
+
+* External API Integration
+
+* MongoDB Database Integration
+
+## Tech Stack
 
 * Node.js
 * Express.js
 * MongoDB
 * Mongoose
-* bcryptjs
-* JSON Web Token (JWT)
+* JWT
+* Multer
+* Cloudinary
 * dotenv
+* Git & GitHub
+
+## Project Structure
+
+```text
+config/
+controllers/
+middleware/
+models/
+routes/
+index.js
+```
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+```
+
+Navigate into the project:
+
+```bash
+cd SIMPLE-CRUD-API
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a .env file and add:
+
+```env
+PORT=2000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
 
 ## API Endpoints
 
 ### Authentication
 
-* POST /api/auth/register
-* POST /api/auth/login
+```http
+POST /auth/signup
+POST /auth/login
+```
 
 ### Products
 
-* GET /api/products
-* GET /api/products/:id
-* POST /api/products (Admin Only)
-* PUT /api/products/:id (Admin Only)
-* DELETE /api/products/:id (Admin Only)
+```http
+GET /products
+GET /products/:id
+POST /products
+PUT /products/:id
+DELETE /products/:id
+```
 
-## Environment Variables
+### Todos
 
-Create a .env file and configure:
+```http
+GET /todos
+POST /todos
+PUT /todos/:id
+DELETE /todos/:id
+```
 
-MONGO_URL=your_mongodb_connection_string
+## Learning Outcomes
 
-JWT_SECRET=your_secret_key
+Through this project, I gained practical experience in:
 
-ADMIN_EMAIL=[admin@gmail.com](mailto:admin@gmail.com)
-
-ADMIN_PASSWORD=your_admin_password
-
-## What I Learned
-
-Through this project I learned:
-
-* Building REST APIs with Express.js
-* Working with MongoDB and Mongoose
-* Implementing JWT Authentication
-* Protecting routes with middleware
-* Implementing Role-Based Authorization
-* Managing sensitive data using environment variables
-* Testing APIs with Insomnia
-
-## Future Improvements
-
-* Product Image Upload with Cloudinary
-* External API Integration
-* Shopping Cart Functionality
-* Order Management System
-* Payment Integration
+* Building REST APIs
+* MongoDB Database Design
+* Authentication with JWT
+* File Upload Handling
+* Cloudinary Integration
+* Middleware Development
+* Git and GitHub Workflow
+* API Testing
+* Error Handling
+* Backend Project Structure
 
 ## Author
 
 Ogbuka chibuike
+
+Backend Developer | Node.js | Express.js | MongoDB
 
 
 https://github.com/unity643
